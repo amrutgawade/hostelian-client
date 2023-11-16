@@ -13,8 +13,10 @@ function Login() {
   const onSubmit = (data, event) => {
     console.log("Login Form Submitted", data);
     event.target.reset();
+    const {role} = data;
+    localStorage.setItem("role",role);
     swal("Logged In..!", "Congratulations..!", "success").then(() =>
-      navigate("/admin")
+      navigate("/dashboard")
     );
   };
   return (

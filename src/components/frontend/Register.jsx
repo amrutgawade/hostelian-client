@@ -12,10 +12,12 @@ function Register() {
   const navigate = useNavigate();
 
   const onSubmit = (data, event) => {
-    console.log("Register Form Submitted", data);
+    const {firstName, lastName, gender, course, mobile, email, password} = data;
+    const formData = {firstName, lastName, gender, course, mobile, email, password};
+    console.log("Register Form Submitted", formData);
     event.target.reset();
     swal("Registered..!", "Congratulations..!", "success").then(() =>
-      navigate("/login")
+      navigate("/")
     );
   };
   return (
@@ -209,7 +211,7 @@ function Register() {
               </div>
               <div className="card-footer text-center py-3">
                 <div className="small">
-                  <Link to="/login">Have an account? Go to login</Link>
+                  <Link to="/">Have an account? Go to login</Link>
                 </div>
               </div>
             </div>

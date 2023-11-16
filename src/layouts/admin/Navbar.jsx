@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Navbar() {
+  const logoutHandler = () =>{
+    localStorage.removeItem("role");
+  }
   return (
     <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
       <Link className="navbar-brand ps-3" to="/admin">
@@ -61,7 +64,7 @@ function Navbar() {
               <hr className="dropdown-divider" />
             </li>
             <li>
-              <Link className="dropdown-item" to="/">
+              <Link className="dropdown-item" onClick={logoutHandler} to="/">
                 Logout
               </Link>
             </li>

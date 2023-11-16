@@ -2,10 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Sidebar() {
-  const data = {
-    role: "admin",
-  };
-  if (data.role === "admin") {
+  const role = localStorage.getItem("role");
+  if (role === "admin") {
     return (
       <nav
         className="sb-sidenav accordion sb-sidenav-dark"
@@ -14,60 +12,42 @@ function Sidebar() {
         <div className="sb-sidenav-menu">
           <div className="nav">
             <div className="sb-sidenav-menu-heading">Core</div>
-            <Link className="nav-link" to="/admin/dashboard">
+            <Link className="nav-link" to="/dashboard">
               <div className="sb-nav-link-icon">
                 <i className="fas fa-tachometer-alt" />
               </div>
               Dashboard
             </Link>
-            <Link className="nav-link" to="/admin/profile">
+            <Link className="nav-link" to="/profile">
+              <div className="sb-nav-link-icon">
+                <i className="fas fa-user-edit" />
+              </div>
+              Change Password
+            </Link>
+
+            <Link className="nav-link" to="/mess-details">
               <div className="sb-nav-link-icon">
                 <i className="fas fa-sack-dollar" />
               </div>
-              Mess Bills
+              Mess Details
             </Link>
-            <Link
-              className="nav-link collapsed"
-              to="#"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseLayouts"
-              aria-expanded="false"
-              aria-controls="collapseLayouts"
-            >
+
+            <Link className="nav-link" to="/manage-students">
               <div className="sb-nav-link-icon">
-                <i className="fas fa-user" />
+                <i className="fas fa-users" />
               </div>
-              Students
-              <div className="sb-sidenav-collapse-arrow">
-                <i className="fas fa-angle-down" />
-              </div>
+              Manage Students
             </Link>
-            <div
-              className="collapse"
-              id="collapseLayouts"
-              aria-labelledby="headingOne"
-              data-bs-parent="#sidenavAccordion"
-            >
-              <nav className="sb-sidenav-menu-nested nav">
-                <Link className="nav-link" to="layout-static.html">
-                  Add Students
-                </Link>
-                <Link className="nav-link" to="layout-sidenav-light.html">
-                  Manage Students
-                </Link>
-              </nav>
-            </div>
 
             <Link
               className="nav-link collapsed"
-              to="#"
               data-bs-toggle="collapse"
               data-bs-target="#collapseLayouts"
               aria-expanded="false"
               aria-controls="collapseLayouts"
             >
               <div className="sb-nav-link-icon">
-                <i className="fas fa-user" />
+                <i className="fas fa-house-user" />
               </div>
               Room Details
               <div className="sb-sidenav-collapse-arrow">
@@ -81,20 +61,20 @@ function Sidebar() {
               data-bs-parent="#sidenavAccordion"
             >
               <nav className="sb-sidenav-menu-nested nav">
-                <Link className="nav-link" to="layout-static.html">
-                  Add Rooms
+                <Link className="nav-link" to="/room-details">
+                  All Rooms
                 </Link>
-                <Link className="nav-link" to="layout-sidenav-light.html">
+                <Link className="nav-link" to="/manage-rooms">
                   Manage Rooms
                 </Link>
               </nav>
             </div>
 
-            <Link className="nav-link" to="#">
+            <Link className="nav-link" to="/complaint-box">
               <div className="sb-nav-link-icon">
                 <i className="fas fa-envelope" />
               </div>
-              Complaints
+              Complaint Box
             </Link>
           </div>
         </div>
@@ -104,7 +84,7 @@ function Sidebar() {
         </div>
       </nav>
     );
-  } else if (data.role === "student") {
+  } else if (role === "student") {
     return (
       <nav
         className="sb-sidenav accordion sb-sidenav-dark"
@@ -113,19 +93,49 @@ function Sidebar() {
         <div className="sb-sidenav-menu">
           <div className="nav">
             <div className="sb-sidenav-menu-heading">Core</div>
-            <Link className="nav-link" to="/student/dashboard">
+            <Link className="nav-link" to="/dashboard">
               <div className="sb-nav-link-icon">
                 <i className="fas fa-tachometer-alt" />
               </div>
               Dashboard
             </Link>
-            <Link className="nav-link" to="/student/profile">
+            <Link className="nav-link" to="/profile">
               <div className="sb-nav-link-icon">
-                <i className="fas fa-tachometer-alt" />
+                <i className="fas fa-user-edit" />
               </div>
               Profile
             </Link>
-            <Link
+            <Link className="nav-link" to="/book-hostel">
+              <div className="sb-nav-link-icon">
+                <i className="fas fa-check-double" />
+              </div>
+              Book Hostel
+            </Link>
+            <Link className="nav-link" to="/room-details">
+              <div className="sb-nav-link-icon">
+                <i className="fas fa-house-user" />
+              </div>
+              Hostel Details
+            </Link>
+            <Link className="nav-link" to="/mess-bill">
+              <div className="sb-nav-link-icon">
+                <i className="fas fa-sack-dollar" />
+              </div>
+              Mess Bill
+            </Link>
+            <Link className="nav-link" to="/anti-ragging">
+              <div className="sb-nav-link-icon">
+                <i className="fas fa-ban" />
+              </div>
+              Anti-Rgging
+            </Link>
+            <Link className="nav-link" to="complaint-box">
+              <div className="sb-nav-link-icon">
+                <i className="fas fa-envelope" />
+              </div>
+              Complaint Box
+            </Link>
+            {/* <Link
               className="nav-link collapsed"
               to="#"
               data-bs-toggle="collapse"
@@ -155,110 +165,7 @@ function Sidebar() {
                   Light Sidenav
                 </Link>
               </nav>
-            </div>
-            <Link
-              className="nav-link collapsed"
-              to="#"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapsePages"
-              aria-expanded="false"
-              aria-controls="collapsePages"
-            >
-              <div className="sb-nav-link-icon">
-                <i className="fas fa-book-open" />
-              </div>
-              Pages
-              <div className="sb-sidenav-collapse-arrow">
-                <i className="fas fa-angle-down" />
-              </div>
-            </Link>
-            <div
-              className="collapse"
-              id="collapsePages"
-              aria-labelledby="headingTwo"
-              data-bs-parent="#sidenavAccordion"
-            >
-              <nav
-                className="sb-sidenav-menu-nested nav accordion"
-                id="sidenavAccordionPages"
-              >
-                <Link
-                  className="nav-link collapsed"
-                  to="#"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#pagesCollapseAuth"
-                  aria-expanded="false"
-                  aria-controls="pagesCollapseAuth"
-                >
-                  Authentication
-                  <div className="sb-sidenav-collapse-arrow">
-                    <i className="fas fa-angle-down" />
-                  </div>
-                </Link>
-                <div
-                  className="collapse"
-                  id="pagesCollapseAuth"
-                  aria-labelledby="headingOne"
-                  data-bs-parent="#sidenavAccordionPages"
-                >
-                  <nav className="sb-sidenav-menu-nested nav">
-                    <Link className="nav-link" to="login.html">
-                      Login
-                    </Link>
-                    <Link className="nav-link" to="register.html">
-                      Register
-                    </Link>
-                    <Link className="nav-link" to="password.html">
-                      Forgot Password
-                    </Link>
-                  </nav>
-                </div>
-                <Link
-                  className="nav-link collapsed"
-                  to="#"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#pagesCollapseError"
-                  aria-expanded="false"
-                  aria-controls="pagesCollapseError"
-                >
-                  Error
-                  <div className="sb-sidenav-collapse-arrow">
-                    <i className="fas fa-angle-down" />
-                  </div>
-                </Link>
-                <div
-                  className="collapse"
-                  id="pagesCollapseError"
-                  aria-labelledby="headingOne"
-                  data-bs-parent="#sidenavAccordionPages"
-                >
-                  <nav className="sb-sidenav-menu-nested nav">
-                    <Link className="nav-link" to="401.html">
-                      401 Page
-                    </Link>
-                    <Link className="nav-link" to="404.html">
-                      404 Page
-                    </Link>
-                    <Link className="nav-link" to="500.html">
-                      500 Page
-                    </Link>
-                  </nav>
-                </div>
-              </nav>
-            </div>
-            <div className="sb-sidenav-menu-heading">Addons</div>
-            <Link className="nav-link" to="#">
-              <div className="sb-nav-link-icon">
-                <i className="fas fa-chart-area" />
-              </div>
-              Charts
-            </Link>
-            <Link className="nav-link" to="#">
-              <div className="sb-nav-link-icon">
-                <i className="fas fa-table" />
-              </div>
-              Tables
-            </Link>
+            </div> */}
           </div>
         </div>
         <div className="sb-sidenav-footer">

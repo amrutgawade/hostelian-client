@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Profile() {
+function StudentProfile() {
   return (
     <>
       <h1 className="mt-4">Profile</h1>
       <ol className="breadcrumb mb-4">
-        <li className="breadcrumb-item active">Admin Profile</li>
+        <li className="breadcrumb-item active">Student Profile</li>
       </ol>
       <div className="container-fluid">
         <div className="row">
@@ -122,4 +122,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default StudentProfile;
